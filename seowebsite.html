@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organic Growth Solutions: Service Proposal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- 
+        Chosen Palette: Earthy Sage
+        - Background: bg-stone-50 (#FBFBF8)
+        - Text: text-stone-700
+        - Primary Accent: bg-emerald-600, text-white
+        - Secondary Accent/Borders: border-stone-200
+    -->
+    <!-- 
+        Application Structure Plan: The application is structured as a tabbed single-page interface rather than a linear document. This design choice was made to reduce cognitive load and allow potential clients to navigate directly to the information they care about most (Services, Process, Pricing, or Terms). The flow is designed to be intuitive: users are introduced to the services, then shown how the process works, presented with clear pricing, and finally can review the detailed terms. This task-oriented architecture is more user-friendly and engaging for a web-based proposal than a static contract format.
+    -->
+    <!-- 
+        Visualization & Content Choices: 
+        - Report Info: Service descriptions (SEO & SMM). Goal: Inform & Organize. Viz/Method: Interactive cards with Unicode icons (HTML/CSS/JS). Interaction: Clicking a service toggles a detailed description view. Justification: This makes the dense service list scannable and less overwhelming.
+        - Report Info: Implied project workflow. Goal: Organize & Clarify. Viz/Method: A visual step-by-step process diagram (HTML/Tailwind). Interaction: Static visual guide. Justification: A visual timeline is more intuitive for understanding a process than reading text.
+        - Report Info: Pricing. Goal: Inform. Viz/Method: A highlighted pricing card (HTML/Tailwind). Interaction: Static. Justification: Clearly isolates the most critical piece of information for the client.
+        - Report Info: Reporting clause. Goal: Illustrate. Viz/Method: A sample line chart (Chart.js/Canvas). Interaction: Static. Justification: Provides a tangible example of a deliverable (the monthly report), adding value and clarity.
+        - Report Info: Terms & Conditions. Goal: Inform (detailed). Viz/Method: Accordion list (HTML/JS). Interaction: Clicking headers expands/collapses content. Justification: Makes lengthy legal text manageable and accessible without cluttering the page.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .tab-active { 
+            border-color: #059669; /* emerald-600 */
+            color: #059669;
+            font-weight: 600;
+        }
+        .tab-inactive {
+            border-color: transparent;
+            color: #57534e; /* stone-600 */
+        }
+        .section-active { display: block; }
+        .section-inactive { display: none; }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 40vh;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-700 antialiased">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Header -->
+        <header class="py-12 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-stone-800 tracking-tight">[Your Brand Name]</h1>
+            <p class="mt-4 text-lg text-stone-600">Interactive Proposal: Organic Growth Solutions</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="sticky top-0 bg-stone-50/80 backdrop-blur-lg z-10 border-b border-stone-200">
+            <div class="flex justify-center items-center space-x-2 sm:space-x-8 text-sm sm:text-base">
+                <button data-tab="services" class="nav-tab tab-active py-4 px-2 sm:px-4 border-b-2 transition-all duration-300">Our Services</button>
+                <button data-tab="process" class="nav-tab tab-inactive py-4 px-2 sm:px-4 border-b-2 transition-all duration-300">The Process</button>
+                <button data-tab="pricing" class="nav-tab tab-inactive py-4 px-2 sm:px-4 border-b-2 transition-all duration-300">Pricing</button>
+                <button data-tab="terms" class="nav-tab tab-inactive py-4 px-2 sm:px-4 border-b-2 transition-all duration-300">Agreement</button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="py-12 md:py-16">
+
+            <!-- Services Section -->
+            <section id="services" class="main-section section-active">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-3xl font-bold text-stone-800">A Two-Fold Approach to Growth</h2>
+                    <p class="mt-4 text-lg text-stone-600">Our package combines targeted SEO to attract new audiences with strategic social media management to build a loyal community. This synergy ensures sustainable, long-term growth for your brand.</p>
+                </div>
+
+                <div class="mt-12 grid md:grid-cols-2 gap-8 lg:gap-12">
+                    <!-- SEO Column -->
+                    <div class="bg-white p-8 rounded-xl border border-stone-200 shadow-sm">
+                        <h3 class="text-2xl font-bold text-stone-800 flex items-center"><span class="mr-3 text-2xl">🔍</span> SEO for Organic Visibility</h3>
+                        <p class="mt-2 text-stone-600">We improve your website's ranking on search engines to drive qualified, high-intent traffic directly to you.</p>
+                        <div class="mt-6 space-y-4">
+                            <div class="service-item p-4 rounded-lg bg-stone-50 border border-stone-200">
+                                <h4 class="font-semibold text-stone-800">Keyword Research & Strategy</h4>
+                                <p class="text-sm text-stone-600">Identifying the exact phrases your ideal customers use to find solutions like yours.</p>
+                            </div>
+                            <div class="service-item p-4 rounded-lg bg-stone-50 border border-stone-200">
+                                <h4 class="font-semibold text-stone-800">On-Page SEO</h4>
+                                <p class="text-sm text-stone-600">Optimizing content, meta tags, and images to perfectly align with your target keywords.</p>
+                            </div>
+                            <div class="service-item p-4 rounded-lg bg-stone-50 border border-stone-200">
+                                <h4 class="font-semibold text-stone-800">Technical SEO Audit</h4>
+                                <p class="text-sm text-stone-600">Reviewing your site's health to fix issues with speed and mobile-friendliness.</p>
+                            </div>
+                            <div class="service-item p-4 rounded-lg bg-stone-50 border border-stone-200">
+                                <h4 class="font-semibold text-stone-800">Content Optimization</h4>
+                                <p class="text-sm text-stone-600">Providing guidance to create high-ranking content that resonates with your audience.</p>
+                            </div>
+                            <div class="service-item p-4 rounded-lg bg-stone-50 border border-stone-200">
+                                <h4 class="font-semibold text-stone-800">Local SEO</h4>
+                                <p class="text-sm text-stone-600">Optimizing your Google Business Profile to capture local customers.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SMM Column -->
+                    <div class="bg-white p-8 rounded-xl border border-stone-200 shadow-sm">
+                        <h3 class="text-2xl font-bold text-stone-800 flex items-center"><span class="mr-3 text-2xl">📸</span> Instagram for Organic Engagement</h3>
+                        <p class="mt-2 text-stone-600">We grow your audience and foster a vibrant community on Instagram through authentic, engaging content.</p>
+                        <div class="mt-6 space-y-4">
+                            <div class="service-item p-4 rounded-lg bg-stone-50 border border-stone-200">
+                                <h4 class="font-semibold text-stone-800">Profile Optimization</h4>
+                                <p class="text-sm text-stone-600">Enhancing your bio, profile picture, and highlights to attract and convert visitors.</p>
+                            </div>
+                             <div class="service-item p-4 rounded-lg bg-stone-50 border border-stone-200">
+                                <h4 class="font-semibold text-stone-800">Content Strategy & Planning</h4>
+                                <p class="text-sm text-stone-600">Developing a content calendar with post, Reel, and Story ideas your audience will love.</p>
+                            </div>
+                             <div class="service-item p-4 rounded-lg bg-stone-50 border border-stone-200">
+                                <h4 class="font-semibold text-stone-800">Hashtag Research & Strategy</h4>
+                                <p class="text-sm text-stone-600">Identifying relevant and trending hashtags to maximize your discoverability and reach.</p>
+                            </div>
+                            <div class="service-item p-4 rounded-lg bg-stone-50 border border-stone-200">
+                                <h4 class="font-semibold text-stone-800">Engagement Tactics</h4>
+                                <p class="text-sm text-stone-600">Implementing strategies to encourage likes, comments, shares, and saves.</p>
+                            </div>
+                            <div class="service-item p-4 rounded-lg bg-stone-50 border border-stone-200">
+                                <h4 class="font-semibold text-stone-800">Organic Growth Techniques</h4>
+                                <p class="text-sm text-stone-600">Using features like Guides and collaborative posts to maximize organic reach.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Process Section -->
+            <section id="process" class="main-section section-inactive">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-3xl font-bold text-stone-800">Our Collaborative Workflow</h2>
+                    <p class="mt-4 text-lg text-stone-600">We follow a transparent, four-step process to ensure we're aligned with your goals and delivering measurable results every step of the way.</p>
+                </div>
+                
+                <div class="mt-12 max-w-5xl mx-auto">
+                    <div class="grid md:grid-cols-4 gap-4 md:gap-0 relative">
+                        <!-- Connecting line -->
+                        <div class="hidden md:block absolute top-1/2 -translate-y-1/2 left-0 w-full h-0.5 bg-stone-300"></div>
+                        
+                        <div class="relative flex flex-col items-center p-4">
+                            <div class="w-12 h-12 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-xl z-10">1</div>
+                            <h4 class="mt-4 font-semibold text-center">Onboarding & Discovery</h4>
+                            <p class="mt-1 text-sm text-center text-stone-600">We start with a kickoff call to understand your goals and get access to necessary accounts.</p>
+                        </div>
+                        <div class="relative flex flex-col items-center p-4">
+                            <div class="w-12 h-12 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-xl z-10">2</div>
+                            <h4 class="mt-4 font-semibold text-center">Strategy & Planning</h4>
+                            <p class="mt-1 text-sm text-center text-stone-600">We develop your custom SEO and content strategy and present it for your approval.</p>
+                        </div>
+                        <div class="relative flex flex-col items-center p-4">
+                            <div class="w-12 h-12 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-xl z-10">3</div>
+                            <h4 class="mt-4 font-semibold text-center">Execution & Optimization</h4>
+                            <p class="mt-1 text-sm text-center text-stone-600">We implement the strategy, create content, and continuously optimize for best results.</p>
+                        </div>
+                        <div class="relative flex flex-col items-center p-4">
+                            <div class="w-12 h-12 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-xl z-10">4</div>
+                            <h4 class="mt-4 font-semibold text-center">Reporting & Review</h4>
+                            <p class="mt-1 text-sm text-center text-stone-600">You receive a monthly report detailing progress and we review the plan for the next cycle.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-16 bg-white p-8 rounded-xl border border-stone-200 shadow-sm max-w-4xl mx-auto">
+                    <h3 class="text-2xl font-bold text-stone-800 text-center">Transparent Reporting</h3>
+                    <p class="mt-2 text-stone-600 text-center">We believe in clarity. Each month, you'll receive a detailed report showing your growth, like the example below, so you always know how your investment is performing.</p>
+                    <div class="mt-8 chart-container">
+                        <canvas id="reportingChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pricing Section -->
+            <section id="pricing" class="main-section section-inactive">
+                 <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-3xl font-bold text-stone-800">Simple, All-Inclusive Pricing</h2>
+                    <p class="mt-4 text-lg text-stone-600">One package, one price. Everything you need for powerful organic growth without complex tiers or hidden fees.</p>
+                </div>
+                <div class="mt-12 max-w-md mx-auto bg-white rounded-2xl border-2 border-emerald-600 shadow-xl p-8 text-center">
+                    <h3 class="text-2xl font-bold text-stone-800">Organic Growth Package</h3>
+                    <p class="mt-4 text-5xl font-extrabold text-stone-900">$1000 <span class="text-xl font-medium text-stone-500">USD / mo</span></p>
+                    <p class="text-sm text-stone-500 mt-1">+ applicable taxes</p>
+                    <ul class="mt-8 text-left space-y-3">
+                        <li class="flex items-center"><span class="text-emerald-500 mr-3">✔</span> Full SEO Optimization</li>
+                        <li class="flex items-center"><span class="text-emerald-500 mr-3">✔</span> Instagram Content Strategy</li>
+                        <li class="flex items-center"><span class="text-emerald-500 mr-3">✔</span> Organic Growth Management</li>
+                        <li class="flex items-center"><span class="text-emerald-500 mr-3">✔</span> Monthly Progress Reporting</li>
+                    </ul>
+                    <button class="mt-8 w-full bg-emerald-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-emerald-700 transition-colors duration-300">Let's Get Started</button>
+                </div>
+            </section>
+
+            <!-- Terms Section -->
+            <section id="terms" class="main-section section-inactive">
+                 <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-3xl font-bold text-stone-800">Partnership Agreement</h2>
+                    <p class="mt-4 text-lg text-stone-600">Our terms and conditions are designed to ensure a clear, fair, and productive partnership. Please review the details of our agreement below.</p>
+                </div>
+                <div class="mt-12 max-w-3xl mx-auto space-y-4">
+                    <div class="accordion-item bg-white border border-stone-200 rounded-lg">
+                        <button class="accordion-header w-full text-left p-4 font-semibold text-stone-800 flex justify-between items-center">
+                            Payment Terms
+                            <span class="accordion-icon transform transition-transform duration-300">▼</span>
+                        </button>
+                        <div class="accordion-content overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
+                            <div class="p-4 border-t border-stone-200 text-sm text-stone-600">
+                                A 50% upfront payment is required to begin, with the remaining balance due upon completion of the first month's service. All payments are non-refundable. Late payments may incur a fee of 5% per week.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item bg-white border border-stone-200 rounded-lg">
+                        <button class="accordion-header w-full text-left p-4 font-semibold text-stone-800 flex justify-between items-center">
+                            Client Responsibilities
+                            <span class="accordion-icon transform transition-transform duration-300">▼</span>
+                        </button>
+                        <div class="accordion-content overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
+                            <div class="p-4 border-t border-stone-200 text-sm text-stone-600">
+                                You agree to provide timely access to necessary accounts (website, analytics, Instagram) and provide feedback promptly. You acknowledge that organic growth takes time and results are not guaranteed within a specific timeframe due to the nature of search and social media algorithms.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item bg-white border border-stone-200 rounded-lg">
+                        <button class="accordion-header w-full text-left p-4 font-semibold text-stone-800 flex justify-between items-center">
+                            Intellectual Property & Confidentiality
+                            <span class="accordion-icon transform transition-transform duration-300">▼</span>
+                        </button>
+                        <div class="accordion-content overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
+                            <div class="p-4 border-t border-stone-200 text-sm text-stone-600">
+                                All content created for you becomes your property upon full payment. We retain the right to use project outcomes for promotional purposes. Both parties agree to keep all shared information confidential.
+                            </div>
+                        </div>
+                    </div>
+                     <div class="accordion-item bg-white border border-stone-200 rounded-lg">
+                        <button class="accordion-header w-full text-left p-4 font-semibold text-stone-800 flex justify-between items-center">
+                            Termination & Governing Law
+                            <span class="accordion-icon transform transition-transform duration-300">▼</span>
+                        </button>
+                        <div class="accordion-content overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
+                            <div class="p-4 border-t border-stone-200 text-sm text-stone-600">
+                                This agreement can be terminated by either party with 30 days' written notice. In case of termination, payment is due for all services rendered up to that date. This contract is governed by the laws of [Your Country/State/Region].
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12 max-w-3xl mx-auto bg-stone-100 border-l-4 border-emerald-500 p-6 rounded-r-lg">
+                    <h4 class="font-bold text-stone-800">Final Step: Acceptance</h4>
+                    <p class="mt-2 text-sm text-stone-600">To accept this proposal and begin our partnership, please reply to our email confirming your acceptance of these terms. We will then issue the initial invoice. We are excited to help you grow!</p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <footer class="text-center py-8 border-t border-stone-200 mt-16">
+        <p class="text-sm text-stone-500">&copy; 2025 [Your Brand Name]. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.nav-tab');
+            const sections = document.querySelectorAll('.main-section');
+            const accordions = document.querySelectorAll('.accordion-item');
+            
+            // Tab navigation
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = tab.getAttribute('data-tab');
+
+                    tabs.forEach(t => {
+                        t.classList.remove('tab-active');
+                        t.classList.add('tab-inactive');
+                    });
+                    tab.classList.add('tab-active');
+                    tab.classList.remove('tab-inactive');
+
+                    sections.forEach(section => {
+                        if (section.id === target) {
+                            section.classList.add('section-active');
+                            section.classList.remove('section-inactive');
+                        } else {
+                            section.classList.remove('section-active');
+                            section.classList.add('section-inactive');
+                        }
+                    });
+                });
+            });
+
+            // Accordion functionality
+            accordions.forEach(accordion => {
+                const header = accordion.querySelector('.accordion-header');
+                const content = accordion.querySelector('.accordion-content');
+                const icon = accordion.querySelector('.accordion-icon');
+                
+                header.addEventListener('click', () => {
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                        icon.style.transform = 'rotate(0deg)';
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        icon.style.transform = 'rotate(180deg)';
+                    }
+                });
+            });
+
+            // Chart.js implementation
+            const ctx = document.getElementById('reportingChart').getContext('2d');
+            const reportingChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'Month 6'],
+                    datasets: [{
+                        label: 'Organic Website Traffic',
+                        data: [500, 750, 1200, 1500, 2100, 2800],
+                        borderColor: '#059669', // emerald-600
+                        backgroundColor: 'rgba(5, 150, 105, 0.1)',
+                        borderWidth: 2,
+                        tension: 0.4,
+                        fill: true,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: '#f5f5f4' // stone-100
+                            }
+                        },
+                        x: {
+                             grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: '#1c1917', // stone-900
+                            titleFont: { size: 14 },
+                            bodyFont: { size: 12 },
+                            padding: 10,
+                            cornerRadius: 4,
+                        }
+                    }
+                }
+            });
+
+            const pricingButton = document.querySelector('#pricing button');
+            if(pricingButton) {
+                pricingButton.addEventListener('click', () => {
+                    document.querySelector('button[data-tab="terms"]').click();
+                    setTimeout(() => {
+                        document.querySelector('#terms').scrollIntoView({ behavior: 'smooth' });
+                    }, 100);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
